@@ -1,2 +1,4 @@
 .env
 visualisation_outputs
+.airbase
+__pycache__/

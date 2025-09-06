@@ -76,7 +76,8 @@ def generate_visualisation(sql_result: dict, python_code: str):
         return {
             "success": False,
             "error": str(e),
-            "traceback": traceback.format_exc()
+            "traceback": traceback.format_exc(),
+            "fig_path": None
         }
 
 # ============================================================
@@ -112,12 +113,12 @@ tools = [
           "parameters": {
               "type": "object",
               "properties": {
-                  "instructions": {
+                  ???: {
                       "type": "string",
-                      "description": "Instructions for the visualisation."
+                      "description": ???
                   }
               },
-              "required": ["instructions"],
+              "required": [???],
               "additionalProperties": False
           },
           "strict": True
@@ -150,7 +151,7 @@ def execute_visualisation_code(instructions: str, sql_result: dict):
     Given the following DuckDB SQL query result as a JSON-serializable dict:
     {json.dumps(sql_result, indent=2)}
 
-    Write a self-contained Python snippet that: {instructions}
+    Write a self-contained Python snippet that: {???}
 
     Rules:
     - Data is already in a pandas DataFrame named `df`. Do NOT recreate it manually.
@@ -167,7 +168,7 @@ def execute_visualisation_code(instructions: str, sql_result: dict):
         resp = client.chat.completions.create(
             model="qwen/qwen-2.5-coder-32b-instruct:free",
             messages=messages,
-            temperature=0.2,
+            temperature=???,
         )
         code = resp.choices[0].message.content.strip()
         print("\n📝 Generated visualisation code:\n", code)
@@ -200,8 +201,8 @@ def main_agent(user_input: str):
         Flow:
         1. If the user's query is just about the schema, answer directly.
         2. Otherwise, generate a SQL query and call `execute_sql_query`.
-        3. If results span across years, types, or trends, call `execute_visualisation_code`.
-        4. If the result is just a single aggregate (one row, one value), skip visualisation.
+        3. {sentence abt calling viz tool}
+        4. {sentence abt how if its just a single value answer, can skip viz}
         5. Give insights based on the data and (if created) the visualisation.
 
         Notes:
@@ -255,7 +256,7 @@ def main_agent(user_input: str):
                     })
 
                 elif name == "execute_visualisation_code":
-                    instructions = args.get("instructions")
+                    instructions = ???
                     print(f"\n🤖 Tool call: execute_visualisation_code\n🖼️ Instructions: {instructions}")
                     viz_result = execute_visualisation_code(instructions, results)
                     messages.append({
@@ -270,9 +271,9 @@ def main_agent(user_input: str):
             print(msg.content)
 
             return {
-                "insights": msg.content,
-                "result_df": results["result_df"] if results else None,
-                "visualisation": viz_result["fig_path"] if viz_result else None
+                "insights": ???,
+                "result_df": ??? if results else None,
+                "visualisation": ??? if viz_result else None
             }
 
 # ============================================================
