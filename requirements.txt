@@ -1,0 +1,9 @@
+openai
+dotenv
+duckdb
+pandas
+numpy
+plotly
+kaleido
+nbformat>=4.2.0
+streamlit
