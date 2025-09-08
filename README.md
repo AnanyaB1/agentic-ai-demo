@@ -14,7 +14,7 @@ Agentic AI walkthrough for **HDB resale analysis** → SQL → Data → Charts �
    * Instead of plaintext output, getting the LLM to give an SQL query
    * 📄 File: `intro_to_tool_calling.py`
 
-3. **Tool Time! Creating a tool to execute the above generated SQL query & give insights **
+3. **Tool Time! Creating a tool to execute the above generated SQL query & give insights**
 
    * Tool: `execute_sql_query`
    * 📄 File: `intro_to_tool_calling.py`
@@ -64,7 +64,7 @@ OPENROUTER_API_KEY=sk-your-key-here
 
 ---
 
-## 🚀 Running the App
+## 🚀 Running the Final App
 
 ### Locally with Streamlit
 
